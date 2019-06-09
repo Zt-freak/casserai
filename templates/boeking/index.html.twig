@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Boeking{% endblock %}
+
+{% block body %}
+    {#{% if (form) %}
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    {% endif %}#}
+    <h1>Boeking</h1>
+
+    {# Room #}
+    <h2>Room index</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for room in rooms %}
+            <tr>
+                <td>{{ room.id }}</td>
+                <td>{{ room.name }}</td>
+                <td>
+                    <a href="{{ path('', {'id': room.id}) }}">boek</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {# Reservation #}
+    {#<h2>Reservation index</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>DateStart</th>
+                <th>DateEnd</th>
+                <th>User</th>
+                <th>Room</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reservation in reservations %}
+            <tr>
+                <td>{{ reservation.id }}</td>
+                <td>{{ reservation.DateStart ? reservation.DateStart|date('Y-m-d') : '' }}</td>
+                <td>{{ reservation.DateEnd ? reservation.DateEnd|date('Y-m-d') : '' }}</td>
+                <td>{{ reservation.user }}</td>
+                <td>{{ reservation.room }}</td>
+                <td>
+                    <a href="{{ path('reservation_show', {'id': reservation.id}) }}">show</a>
+                    <a href="{{ path('reservation_edit', {'id': reservation.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>#}
+{% endblock %}
