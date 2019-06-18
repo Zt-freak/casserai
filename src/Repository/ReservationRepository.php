@@ -135,4 +135,16 @@ class ReservationRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+    public function findByUser($User)
+    {
+        $query = $this->getEntityManager()
+            ->createQuery(
+                'SELECT t FROM App:Reservation t '.
+                'WHERE t.User = :User'
+        )->setParameter('User', $User);
+
+        return $query->getResult();
+    }
+
 }

@@ -73,16 +73,15 @@ class RoomRepository extends ServiceEntityRepository
             ->getOneOrNullResult();
     }
 
-    public function testBoeking($value)
+    public function testBoeking($value): ?Room
     {
         return $this->createQueryBuilder('r')
-            ->innerJoin('r.Reservation', 'c')
-            ->addSelect('c')
+            ->innerJoin('App:Reservation', 'c', 'WITH', 'c.Room = r.id')
             ->andWhere('c.DateStart BETWEEN :checkin AND :checkout')
             ->setParameter('checkin', $value['checkin'])
             ->setParameter('checkout', $value['checkout'])
             ->getQuery()
-            ->getOneOrNullResult();
+            ->getResult()[0];
     }
     
 }

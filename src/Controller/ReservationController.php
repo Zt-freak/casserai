@@ -20,9 +20,25 @@ class ReservationController extends AbstractController
      */
     public function index(ReservationRepository $reservationRepository): Response
     {
-        return $this->render('reservation/index.html.twig', [
-            'reservations' => $reservationRepository->findAll(),
-        ]);
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+            return $this->render('reservation/index.html.twig', [
+                'reservations' => $reservationRepository->findAll(),
+            ]);
+        }
+        else {
+            $User = $this->get('security.token_storage')
+                ->getToken()
+                ->getUser();
+
+            $this->get('doctrine')
+                ->getManager()
+                ->getRepository('App:Reservation')
+                ->findByUser($User);
+            
+            return $this->render('reservation/index.html.twig', [
+                'reservations' => $reservationRepository->findByUser($User),
+            ]);
+        }
     }
 
     /**
