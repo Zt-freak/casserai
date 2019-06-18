@@ -24,4 +24,24 @@ class User extends BaseUser
         parent::__construct();
         // your own logic
     }
+    /**
+     * Date/Time of the last activity
+     *
+     * @var \Datetime
+     *
+     * @ORM\Column(name="last_activity_at", type="datetimetz", nullable=true)
+     */
+    protected $lastActivityAt;
+
+    public function getLastActivityAt(): ?\DateTimeInterface
+    {
+        return $this->lastActivityAt;
+    }
+
+    public function setLastActivityAt(?\DateTimeInterface $lastActivityAt): self
+    {
+        $this->lastActivityAt = $lastActivityAt;
+
+        return $this;
+    }
 }
