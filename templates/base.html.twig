@@ -35,6 +35,11 @@
         display: flex;
         justify-content: space-around;
       }
+
+      .navbar a, .navbar a:hover {
+        color: white;
+      }
+
     </style>
     <!-- Custom styles for this template -->
     <link href="carousel.css" rel="stylesheet">
@@ -44,8 +49,9 @@
   <nav class="navbar bg-dark">
     <a href="/reservation">Reservations</a>
     <a href="/room">Rooms</a>
-    <a href="/boeking">Boeking (vrey broken yeeee)</a>
+    <a href="/boeking">Boeking (broken)</a>
     <a href="/user">Users</a>
+    <a href="/register">Register</a>
     {% if app.user %}
       <a href="/logout">Logout</a>
     {% else %}
