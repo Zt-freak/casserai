@@ -49,11 +49,29 @@ class RoomRepository extends ServiceEntityRepository
         ;
     }
 
+    public function findFreeRooms(): ?Room
+    {
+        $subquery = $this->_em->createQueryBuilder()
+            ->select('t.Room')
+            ->from('App:Reservation', 't')
+            ->innerjoin('t.Room','u')
+            ->getDQL();
+        
+        $query = $this->_em->createQueryBuilder();
+        $query->select('r')
+            ->from('App:Room', 'r')
+            ->where($query->expr()->notIn('r.id', $subquery))
+            ->getQuery()
+            ->getResult();
+
+        return $query;
+    }
+
     /**
     * @return Room[] Returns an array of Room objects
     */
 
-    public function findFreeRooms($value): ?Room
+    public function fffffindFreeRooms($value): ?Room
     {
         // get an ExpressionBuilder instance, so that you
         $expr = $this->_em->getExpressionBuilder();
