@@ -38,6 +38,9 @@ class Reservation
      */
     private $DateEnd;
 
+    private $Length;
+    private $Price;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -89,6 +92,18 @@ class Reservation
         $this->DateEnd = $DateEnd;
 
         return $this;
+    }
+
+    public function getLength(): ?string
+    {
+        $this->length = date_diff($this->DateEnd, $this->DateStart);
+        return $this->length->format('%d');
+    }
+
+    public function getPrice(): ?string
+    {
+        $this->price = $this->length->format('%d') * 20;
+        return $this->price;
     }
 
 }

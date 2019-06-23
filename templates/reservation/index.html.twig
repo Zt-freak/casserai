@@ -48,6 +48,8 @@
                     <th>DateEnd</th>
                     <th>User</th>
                     <th>Room</th>
+                    <th>Length</th>
+                    <th>Price</th>
                     <th>actions</th>
                 </tr>
             </thead>
@@ -59,6 +61,8 @@
                     <td>{{ reservation.DateEnd ? reservation.DateEnd|date('Y-m-d') : '' }}</td>
                     <td>{{ reservation.user }}</td>
                     <td>{{ reservation.room }}</td>
+                    <td>{{ reservation.length }} days</td>
+                    <td>&euro; {{ reservation.price }}</td>
                     <td>
                         <a href="{{ path('reservation_show', {'id': reservation.id}) }}">show</a>
                         <a href="{{ path('reservation_edit', {'id': reservation.id}) }}">edit</a>
