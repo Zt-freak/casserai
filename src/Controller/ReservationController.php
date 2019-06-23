@@ -109,12 +109,4 @@ class ReservationController extends AbstractController
 
         return $this->redirectToRoute('reservation_index');
     }
-
-    /**
-     * @Route("/search", name="reservation_search", methods={"GET","POST"})
-     */
-    public function search(Request $request): Response
-    {
-        
-    }
 }

@@ -33,7 +33,7 @@ class User extends BaseUser
      */
     protected $lastActivityAt;
 
-    public function getLastActivityAt(): ?\DateTimeInterface
+     public function getLastActivityAt(): ?\DateTimeInterface
     {
         return $this->lastActivityAt;
     }

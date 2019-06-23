@@ -64,7 +64,7 @@ class BoekingController extends AbstractController
     {
         return $this->render('boeking/index.html.twig', [
             /*'reservations' => $reservationRepository->findRoomsReserved(['checkin' => '2019-05-17', 'checkout' => '2019-05-24']),*/
-            'rooms' => $roomRepository->testBoeking(['checkin' => '2019-05-17', 'checkout' => '2019-05-24']),
+            'rooms' => $roomRepository->findFreeRooms(['checkin' => '2019-05-17', 'checkout' => '2019-05-24']),
         ]);
     }
 }

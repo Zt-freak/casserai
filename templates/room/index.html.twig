@@ -31,5 +31,15 @@
         </tbody>
     </table>
 
+    <form action="{{ path('room_check') }}" method="post">
+        <input type="date" name="BeginDate">
+        <input type="date" name="EndDate">
+        <input type="submit" name="submit">
+    </form>
+
+    {% if is_granted("ROLE_ADMIN") %}
     <a href="{{ path('room_new') }}">Create new</a>
+    {% else %}
+    <a href="{{ path('room_new') }}">You are not logged in as an admin, but you can create a new room anyways.</a>
+    {% endif %}
 {% endblock %}

@@ -5,7 +5,8 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ReservationRepository")
+ * @ORM\Table(name="Reservation")
+ * @ORM\Entity(repositoryClass="App\Repository\ReservationRepository)
  */
 class Reservation
 {
@@ -37,6 +38,8 @@ class Reservation
      * @ORM\Column(type="date", nullable=true)
      */
     private $DateEnd;
+
+    private $Length;
 
     public function getId(): ?int
     {
@@ -89,6 +92,12 @@ class Reservation
         $this->DateEnd = $DateEnd;
 
         return $this;
+    }
+
+    public function getLength(): ?int
+    {
+        $this->Length = $this->DateEnd - $this->DateStart;
+        return $this->Length;
     }
 
 }
