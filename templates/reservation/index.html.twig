@@ -50,7 +50,7 @@
                     <th>Room</th>
                     <th>Length</th>
                     <th>Price</th>
-                    <th>actions</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -66,6 +66,7 @@
                     <td>
                         <a href="{{ path('reservation_show', {'id': reservation.id}) }}">show</a>
                         <a href="{{ path('reservation_edit', {'id': reservation.id}) }}">edit</a>
+                        <a href="{{ path('reservation_factuur', {'id': reservation.id}) }}">factuur</a>
                     </td>
                 </tr>
             {% else %}
