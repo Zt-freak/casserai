@@ -1,25 +1,63 @@
 {% block body %}
-    <h1>Reservation</h1>
+    <h1>Factuur</h1>
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>DateStart</th>
-                <th>DateEnd</th>
-                <th>User</th>
-                <th>Room</th>
-                <th>Length</th>
-                <th>Price</th>
+                <th>Reservation Id</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td>{{ reservation.id }}</td>
-                <td>{{ reservation.DateStart ? reservation.DateStart|date('Y-m-d') : '' }}</td>
-                <td>{{ reservation.DateEnd ? reservation.DateEnd|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+        <thead>
+            <tr>
+                <th>User</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
                 <td>{{ reservation.user }}</td>
-                <td>{{ reservation.room }}</td>
+            </tr>
+        </tbody>
+        <thead>
+            <tr>
+                <th>Start date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ reservation.DateStart ? reservation.DateStart|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+        <thead>
+            <tr>
+                <th>End date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ reservation.DateEnd ? reservation.DateEnd|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+        <thead>
+            <tr>
+                <th>Length</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
                 <td>{{ reservation.length }} days</td>
+            </tr>
+        </tbody>
+        <thead>
+            <tr>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
                 <td>&euro; {{ reservation.price }}</td>
             </tr>
         </tbody>
