@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ReservationRepository")
  */
@@ -30,6 +32,10 @@ class Reservation
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\GreaterThanOrEqual(
+     * "today",
+     * message = "WARNING: Start date should be today or after today."
+     * )
      */
     private $DateStart;
 
@@ -40,6 +46,14 @@ class Reservation
 
     private $Length;
     private $Price;
+
+    /**
+    * @Assert\EqualTo(
+    * false,
+    * message = "WARNING: Temporal anomaly detected! Start date should not be after the end date!"
+    * )
+    */
+    private $temporalAnomaly = false;
 
     public function getId(): ?int
     {
@@ -78,7 +92,9 @@ class Reservation
     public function setDateStart(\DateTimeInterface $DateStart): self
     {
         $this->DateStart = $DateStart;
-
+        if ($this->DateStart > $this->DateEnd) {
+            $this->temporalAnomaly = true;
+        }
         return $this;
     }
 
