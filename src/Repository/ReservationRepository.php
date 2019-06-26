@@ -147,4 +147,30 @@ class ReservationRepository extends ServiceEntityRepository
         return $query->getResult();
     }
 
+    public function findAllToday($current_date)
+    {
+        $query = $this->getEntityManager()
+            ->createQuery(
+                'SELECT t FROM App:Reservation t '.
+                'WHERE t.DateStart = :today
+                OR t.DateEnd = :today'
+        )->setParameter('today', $current_date);
+
+        return $query->getResult();
+    }
+
+    public function findByUserToday($current_date, $User)
+    {
+        $query = $this->getEntityManager()
+            ->createQuery(
+                'SELECT t FROM App:Reservation t '.
+                'WHERE t.User = :User
+                AND t.DateStart = :today
+                OR t.User = :User
+                AND t.DateEnd = :today'
+        )->setParameter('User', $User)
+        ->setParameter('today', $current_date);
+        return $query->getResult();
+    }
+
 }

@@ -153,4 +153,32 @@ class ReservationController extends AbstractController
             "Attachment" => false
         ]);
     }
+
+    /**
+     *  @Route("stoday", name="reservation_today", methods={"GET"})
+     */
+    public function today(ReservationRepository $reservationRepository): Response
+    {
+        $current_date = new \DateTime();
+        $current_date = $current_date->format('Y-m-d');
+        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+            return $this->render('reservation/today.html.twig', [
+                'reservations' => $reservationRepository->findAllToday($current_date),
+            ]);
+        }
+        else {
+            $User = $this->get('security.token_storage')
+                ->getToken()
+                ->getUser();
+
+            $this->get('doctrine')
+                ->getManager()
+                ->getRepository('App:Reservation')
+                ->findByUser($User);
+            
+            return $this->render('reservation/today.html.twig', [
+                'reservations' => $reservationRepository->findByUserToday($current_date, $User),
+            ]);
+        }
+    }
 }
