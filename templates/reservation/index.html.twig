@@ -29,10 +29,10 @@
                     <td>{{ reservation.length }} days</td>
                     <td>&euro; {{ reservation.price }}</td>
                     <td>
-                        <a href="{{ path('reservation_show', {'id': reservation.id}) }}">show</a>
-                        <a href="{{ path('reservation_edit', {'id': reservation.id}) }}">edit</a>
-                        <a href="{{ path('reservation_factuur', {'id': reservation.id}) }}">factuur</a>
-                        <a href="{{ path('reservation_delete', {'id': reservation.id}) }}">delete</a>
+                        <a href="{{ path('reservation_show', {'id': reservation.id}) }}"><button class="actionbutton button-show"></button></a>
+                        <a href="{{ path('reservation_edit', {'id': reservation.id}) }}"><button class="actionbutton button-edit"></button></a>
+                        <a href="{{ path('reservation_factuur', {'id': reservation.id}) }}"><button class="actionbutton button-factuur"></button></a>
+                        <a href="{{ path('reservation_delete', {'id': reservation.id}) }}"><button class="actionbutton button-delete"></button></a>
                     </td>
                 </tr>
             {% else %}
@@ -71,9 +71,9 @@
                     <td>{{ reservation.length }} days</td>
                     <td>&euro; {{ reservation.price }}</td>
                     <td>
-                        <a href="{{ path('reservation_show', {'id': reservation.id}) }}">show</a>
-                        <a href="{{ path('reservation_edit', {'id': reservation.id}) }}">edit</a>
-                        <a href="{{ path('reservation_factuur', {'id': reservation.id}) }}">factuur</a>
+                        <a href="{{ path('reservation_show', {'id': reservation.id}) }}"><button class="actionbutton button-show"></button></a>
+                        <a href="{{ path('reservation_edit', {'id': reservation.id}) }}"><button class="actionbutton button-edit"></button></a>
+                        <a href="{{ path('reservation_factuur', {'id': reservation.id}) }}"><button class="actionbutton button-factuur"></button></a>
                     </td>
                 </tr>
             {% else %}

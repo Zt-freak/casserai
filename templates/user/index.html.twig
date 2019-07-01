@@ -15,9 +15,7 @@
             <tr>
                 <th>Id</th>
                 <th>Username</th>
-                <th>UsernameCanonical</th>
                 <th>Email</th>
-                <th>LastLogin</th>
                 <th>Last activity</th>
                 <th>Roles</th>
                 <th>actions</th>
@@ -28,14 +26,12 @@
             <tr>
                 <td>{{ user.id }}</td>
                 <td>{{ user.username }}</td>
-                <td>{{ user.usernameCanonical }}</td>
                 <td>{{ user.email }}</td>
-                <td>{{ user.lastLogin ? user.lastLogin|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ user.lastActivityAt ? user.lastLogin|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ user.roles ? user.roles|join(', ') : '' }}</td>
                 <td>
-                    <a href="{{ path('user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
+                    <a href="{{ path('user_show', {'id': user.id}) }}"><button class="actionbutton button-show"></button></a>
+                    <a href="{{ path('user_edit', {'id': user.id}) }}"><button class="actionbutton button-edit"></button></a>
                 </td>
             </tr>
         {% else %}
