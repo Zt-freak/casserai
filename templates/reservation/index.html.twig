@@ -3,6 +3,7 @@
 {% block title %}Reservation index{% endblock %}
 
 {% block body %}
+<div class="container">
     {% if is_granted("ROLE_ADMIN") %}
         <h1>Reservation index</h1>
         <table class="table">
@@ -89,4 +90,5 @@
     {% else %}
         <p>Please log in</p>
     {% endif %}
+</div>
 {% endblock %}

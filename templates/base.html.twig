@@ -9,31 +9,42 @@
       html, body {
         margin: 0;
         padding: 0;
-        font-family: Century Gothic, sans-serif;
+        background-image: url(https://cdn-image.travelandleisure.com/sites/default/files/styles/1600x1000/public/hotel-interior-room0416.jpg?itok=5gENxAK1);
+        background-size: cover;
+        background-attachment: fixed;
+
+        overflow-x: hidden;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
       }
 
       .navbar {
+        width: 100vw;
         display: flex;
         justify-content: space-around;
-        background-color: #212121;
+        background-color: #212121AA;
         margin: 0;
         padding: 10px;
+        position: fixed;
       }
 
       .navbar a, .navbar a:hover {
         color: white;
         text-decoration: none;
-        font-family: Century Gothic, sans-serif;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
       }
 
       h1 {
-        font-family: Century Gothic, sans-serif;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
       }
 
       .table {
-        width: 100vw;
-        font-family: Century Gothic, sans-serif;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         text-align: center;
+      }
+
+      .table thead tr th {
+        width: 30vw;
+        max-width: 200px;
       }
 
       .actionbutton {
@@ -43,6 +54,21 @@
         border: none;
         background-size: cover;
         cursor: pointer;
+      }
+
+      .container {
+          margin: 0;
+          width: 100%;
+          background-color: #FFFFFF88;
+          padding-top: 30px;
+
+          display: flex;
+          justify-content: center;
+          flex-direction: column;
+      }
+
+      .container p {
+        padding: 20px;
       }
 
       .button-show {
@@ -92,11 +118,10 @@
         {% block body %}{% endblock %}
         {% block content %}{% endblock %}
         {% block javascripts %}{% endblock %}
+        <footer class="container">
+          <p>&copy; 2019 La Casserai, B. V.</p>
+        </footer>
     </body>
 </html>
 
-<!-- FOOTER -->
-  <footer class="container">
-    <p>&copy; 2017-2019 La Casserai, B. V.</p>
-  </footer>
 </main>

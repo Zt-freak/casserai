@@ -3,18 +3,233 @@
 {% block title %}Hello DefaultController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<!DOCTYPE html>
+<head>
+    <style>
+        h1 {
+            margin: 0;
+            text-align: center;
 
-<div class="example-wrapper">
-    <h1>hewwo UwU!</h1>
+            color: #FFFFFF;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-weight: bold;
+            font-style: italic;
+            font-size: 30pt;
+            text-shadow: 5px 10px 18px #222222;
+        }
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your Meme Lord at <code><a href="{{ 'C:/xampp/htdocs/boeking/src/Controller/DefaultController.php'|file_link(0) }}">src/Controller/DefaultController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/boeking/templates/default/index.html.twig'|file_link(0) }}">templates/default/index.html.twig</a></code></li>
-    </ul>
-</div>
+        h2 {
+            margin: 0;
+            text-align: center;
+
+            color: #000000;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-weight: bold;
+            font-style: italic;
+            font-size: 30pt;
+        }
+
+        .indexcontainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            overflow: hidden;
+
+            width: 100vw;
+            height: 80vh;
+        }
+
+        .testbox {
+            background-color: #11111188;
+            /*border: 3px white solid;*/
+            max-height: 800px;
+            max-width: 800px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .testbox2 {
+            background-color: #22222277;
+            /*border: 2px white solid;*/
+            max-height: 800px;
+            max-width: 800px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .indextext {
+            color: white;
+            text-align: center;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-weight: bold;
+            font-style: italic;
+            font-size: 50pt;
+            text-shadow: 5px 10px 18px #222222;
+        }
+
+        .roomspreview {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .roomcontainer {
+            text-align: center;
+        }
+
+        .imagecontainer {
+            width:25vw;
+            height: 30vw;
+            background-size: cover;
+            border-radius: 10px;
+        }
+
+        .booknowbutton {
+            background-color: #212121AA;
+            color: #FFFFFF;
+            text-decoration: none;
+            padding: 20px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<html>
+    <div class="indexcontainer">
+        <div id="testbox" class="testbox">
+            <div id="testbox2" class="testbox2">
+                <h1 class="indextext">Hotel La Casserai</h1>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h2>Boek een hotelkamer bij La Casserai</h2>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        <div class="roomspreview">
+            <div class="roomcontainer">
+                <div class="imagecontainer" style="background-image:url(https://www.wyndhamgardenkassel.com/wyndham/garden-kassel/zimmer/kas21-deluxe-room1.1.low-res.gif);">
+                </div>
+                <a class="booknowbutton" href="{{ path('reservation_new') }}">Nu boeken</a>
+            </div>
+             <div class="roomcontainer">
+                <div class="imagecontainer" style="background-image:url(https://www.rd.com/wp-content/uploads/2018/05/15-Things-You-Should-Never-Ever-Do-in-a-Hotel-Room-6.jpg);">
+                </div>
+                <a class="booknowbutton" href="{{ path('reservation_new') }}">Nu boeken</a>
+            </div>
+             <div class="roomcontainer">
+                <div class="imagecontainer" style="background-image:url(https://cdn-image.travelandleisure.com/sites/default/files/styles/1600x1000/public/hotel-interior-room0416.jpg?itok=5gENxAK1);">
+                </div>
+                <a class="booknowbutton" href="{{ path('reservation_new') }}">Nu boeken</a>
+            </div>
+        </div>
+    </div>
+</html>
+<script>
+    const testBox = document.getElementById('testbox')
+    const testBox2 = document.getElementById('testbox2')
+    const minRadius = 40
+    const maxRadius = 70
+
+    function getRandomPercentage (minRadius, maxRadius) {
+        //console.log('getRandomPercentage() with min: '+minRadius+' and max: '+maxRadius)
+        return Math.floor(Math.random() * (maxRadius - minRadius + 1)) + minRadius
+    }
+
+    function getRandomAddValue (numberToCheck, minRadius, maxRadius) {
+        //console.log('getRandomAddValue() with min: '+minRadius+' and max: '+maxRadius)
+        if (numberToCheck <= minRadius) {
+            return 1
+        }
+        else if (numberToCheck >= maxRadius) {
+            return -1
+        }
+        else {
+            min = -1
+            max = 1
+            return Math.floor(Math.random() * (max - min + 1)) + min
+        }
+    }
+
+    let right1 = getRandomPercentage(minRadius, maxRadius)
+    let right2 = 100 - right1
+    let top1 = getRandomPercentage(minRadius, maxRadius)
+    let top2 = 100 - top1
+    let left1 = getRandomPercentage(minRadius, maxRadius)
+    let left2 = 100 - left1
+    let bottom1 = getRandomPercentage(minRadius, maxRadius)
+    let bottom2 = 100 - bottom1
+
+    let rightAddValue = getRandomAddValue(right1, minRadius, maxRadius)
+    let topAddValue = getRandomAddValue(top1, minRadius, maxRadius)
+    let bottomAddValue = getRandomAddValue(bottom1, minRadius, maxRadius)
+    let leftAddValue = getRandomAddValue(left1, minRadius, maxRadius)
+
+    let testBoxGrow = true
+    let testBoxWidth = 40
+    let testBoxWidth2 = 40
+    testBox.style.width = testBoxWidth + 'vw'
+    testBox.style.height = testBox.style.width
+    testBox2.style.width = testBoxWidth2 + 'vw'
+    testBox2.style.height = testBox2.style.width
+
+    function change (minRadius, maxRadius) {
+        //console.log('change() with min: '+minRadius+' and max: '+maxRadius)
+        if (right1 > minRadius || right1 < maxRadius) {
+            right1 = right1 + rightAddValue
+            right2 = 100 - right1
+        }
+        if (top1 > minRadius || top1 < maxRadius) {
+            top1 = top1 + topAddValue
+            top2 = 100 - top1
+        }
+        if (left1 > minRadius || left1 < maxRadius) {
+            left1 = left1 + leftAddValue
+            left2 = 100 - left1
+        }
+        if (bottom1 > minRadius || bottom1 < maxRadius) {
+            bottom1 = bottom1 + bottomAddValue
+            bottom2 = 100 - bottom1
+        }
+
+        /*if (testBoxGrow == true) {
+            testBoxWidth = testBoxWidth + 0.1
+            testBoxWidth2 = testBoxWidth2 - 0.1
+        }
+        else {
+            testBoxWidth = testBoxWidth - 0.1
+            testBoxWidth2 = testBoxWidth2 + 0.1
+        }*/
+
+        testBox.style.borderRadius = top1 + '% ' + top2 + '% ' + bottom1 + '% ' + bottom2 + '% / ' + left1 + '% ' + right1 + '% ' + right2 + '% '+ left2 +'%'
+        testBox2.style.borderRadius = left2 + '% ' + left1 + '% ' + top1 + '% ' + top2 + '% / ' + right1 + '% ' + bottom2 + '% ' + bottom1 + '% '+ right2 +'%'
+
+        /*testBox.style.width = testBoxWidth + 'px'
+        testBox.style.height = testBox.style.width
+        testBox2.style.width = testBoxWidth2 + 'px'
+        testBox2.style.height = testBox2.style.width*/
+    }
+
+    function setChangeValues (minRadius, maxRadius){
+        //console.log('setChangeValue() with min: '+minRadius+' and max: '+maxRadius)
+        rightAddValue = getRandomAddValue(right1, minRadius, maxRadius)
+        topAddValue = getRandomAddValue(top1, minRadius, maxRadius)
+        bottomAddValue = getRandomAddValue(bottom1, minRadius, maxRadius)
+        leftAddValue = getRandomAddValue(left1, minRadius, maxRadius)
+
+        /*if (testBoxGrow == true) {
+            testBoxGrow = false
+        }
+        else {
+            testBoxGrow = true
+        }*/
+    }
+
+    setInterval(function(){change(minRadius, maxRadius)}, 80)
+    setInterval(function(){setChangeValues(minRadius, maxRadius)}, 800)
+</script>
 {% endblock %}
