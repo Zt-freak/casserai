@@ -50,7 +50,7 @@ class Reservation
     /**
     * @Assert\EqualTo(
     * false,
-    * message = "WARNING: Temporal anomaly detected! Start date should not be after the end date!"
+    * message = "WARNING: Temporal anomaly detected! Start date should not be after the end date or equal to the end date."
     * )
     */
     private $temporalAnomaly = false;
@@ -92,12 +92,7 @@ class Reservation
     public function setDateStart(\DateTimeInterface $DateStart): self
     {
         $this->DateStart = $DateStart;
-        /*if ($this->DateStart->format('Y-m-d') > $this->DateEnd->format('Y-m-d')) {
-            $this->temporalAnomaly = false;
-        }*/
-        if ($this->DateStart->diff( $this->DateEnd, FALSE)->invert != 0) {
-            $this->temporalAnomaly = true;
-        }
+        
         return $this;
     }
 
@@ -109,6 +104,9 @@ class Reservation
     public function setDateEnd(?\DateTimeInterface $DateEnd): self
     {
         $this->DateEnd = $DateEnd;
+        if ($this->DateStart->diff( $this->DateEnd, FALSE)->invert != 0) {
+            $this->temporalAnomaly = true;
+        }
 
         return $this;
     }
