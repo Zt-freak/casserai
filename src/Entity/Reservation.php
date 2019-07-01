@@ -92,7 +92,10 @@ class Reservation
     public function setDateStart(\DateTimeInterface $DateStart): self
     {
         $this->DateStart = $DateStart;
-        if ($this->DateStart > $this->DateEnd) {
+        /*if ($this->DateStart->format('Y-m-d') > $this->DateEnd->format('Y-m-d')) {
+            $this->temporalAnomaly = false;
+        }*/
+        if ($this->DateStart->diff( $this->DateEnd, FALSE)->invert != 0) {
             $this->temporalAnomaly = true;
         }
         return $this;
@@ -112,7 +115,8 @@ class Reservation
 
     public function getLength(): ?string
     {
-        $this->length = date_diff($this->DateEnd, $this->DateStart);
+        //$this->length = date_diff($this->DateEnd, $this->DateStart, false);
+        $this->length =  $this->DateStart->diff( $this->DateEnd, FALSE);
         return $this->length->format('%d');
     }
 
